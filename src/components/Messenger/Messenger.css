@@ -1,0 +1,17 @@
+.messenger {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.messenger__sidebar {
+    flex: 25% 0 0;
+    max-width: 480px;
+    border-right: 1px solid #ededed;
+}
+
+.messenger__main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
