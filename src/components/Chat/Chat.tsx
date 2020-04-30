@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {IMessage} from '../../types/messanger'
+import {IMessage} from '../../types/messenger'
 import {Props} from './types'
 import Message from '../Message'
 

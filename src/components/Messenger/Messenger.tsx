@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import {IChat, IMessage} from '../../types/messanger'
+import {IChat, IMessage} from '../../types/messenger'
 import {State} from './types'
 import List from '../List/List'
 import Chat from '../Chat/Chat'

@@ -1,6 +1,6 @@
 import {FC} from 'react'
 
-import {IChat, IMessage} from '../../types/messanger'
+import {IChat, IMessage} from '../../types/messenger'
 
 interface OwnProps {
     chats: IChat[]

@@ -1,6 +1,6 @@
 import {FC} from 'react'
 
-import {IMessage} from '../../types/messanger'
+import {IMessage} from '../../types/messenger'
 
 interface ChatProps {
     messages: IMessage[]

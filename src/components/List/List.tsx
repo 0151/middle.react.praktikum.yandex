@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {IChat} from '../../types/messanger'
+import {IChat} from '../../types/messenger'
 import {Props} from './types'
 import ChatEntity from '../ChatEntity'
 

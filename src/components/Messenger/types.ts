@@ -1,4 +1,4 @@
-import {IChat, IMessage} from '../../types/messanger'
+import {IChat, IMessage} from '../../types/messenger'
 
 interface MessengerState {
     messages: IMessage[]
