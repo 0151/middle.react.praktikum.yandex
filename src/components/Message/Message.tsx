@@ -1,11 +1,12 @@
 import React from 'react'
 
-import {Props} from './types'
 import moment from 'moment'
 
 import './Message.css'
 
-const Message: Props = ({text, date}) => {
+interface Props extends TMessage {}
+
+export const Message: React.FC<Props> = ({text, date}) => {
     return (
         <div className="message">
             <div className="message__balloon">
@@ -17,5 +18,3 @@ const Message: Props = ({text, date}) => {
         </div>
     )
 }
-
-export default Message

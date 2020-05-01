@@ -1,14 +1,19 @@
 import React from 'react'
 
-import {Props} from './types'
-import Avatar from '../UI/Avatar/Avatar'
-import classNames from 'classnames';
+import {TSelectChatHandler} from '../Messenger/types'
+import cn from 'classnames';
 import moment from 'moment'
+import {Avatar} from '../Avatar'
 
 import './ChatEntity.css'
 
-const ChatEntity: Props = ({chatId, name, text, date, isCurrent, handleClick}) => {    
-    const chatEntityClass = classNames('chat-entity', { 'chat-entity_current': isCurrent })
+interface Props extends TChat {
+    isCurrent: boolean
+    handleClick: TSelectChatHandler
+}
+
+export const ChatEntity: React.FC<Props> = ({chatId, name, text, date, isCurrent, handleClick}) => {    
+    const chatEntityClass = cn('chat-entity', { 'chat-entity_current': isCurrent })
 
     return (
         <li className={chatEntityClass} onClick={handleClick(chatId)}>
@@ -25,5 +30,3 @@ const ChatEntity: Props = ({chatId, name, text, date, isCurrent, handleClick}) =
         </li>
     )
 }
-
-export default ChatEntity

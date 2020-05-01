@@ -1,1 +1,1 @@
-export {default} from './ChatEntity';
+export {ChatEntity} from './ChatEntity';

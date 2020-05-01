@@ -1,40 +1,41 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
 
-import {IChat, IMessage} from '../../types/messenger'
-import {State} from './types'
-import List from '../List/List'
-import Chat from '../Chat/Chat'
+import {TSelectChatHandler} from './types'
+import {List} from '../List/List'
+import {Chat} from '../Chat/Chat'
+import {chats, messages} from './fakeData'
 
 import './Messenger.css'
-import {chats} from './fakeData'
 
-class Messenger extends PureComponent {    
+interface State {
+    messages: TMessage[]
+    chats: TChat[]
+    current: TChatId | null
+}
+
+const fetchChats = () => {
+    const compareDate = (a: TChat, b: TChat): number => {
+        if (a.date < b.date) return 1
+        if (a.date > b.date) return -1
+        return 0
+    }
+
+    return chats.sort(compareDate)
+}
+
+const fetchMessages = (chatId: TChatId) => messages.filter(message => message.chatId === chatId)
+
+
+export class Messenger extends PureComponent<{}, State> {    
     state: State = {
         messages: [],
         chats: [],
         current: null
     }
 
-    fetchChats() {
-        const compareDate = (a: IChat, b: IChat): number => {
-            if (a.date < b.date) return 1
-            if (a.date > b.date) return -1
-            return 0
-        }
-
-        return chats.sort(compareDate)
-    }
-
-    fetchMessages(chatId: number): IMessage[] {
-        const chat = chats.filter(chat => chat.chatId === chatId)
-        const messages = (chat[0].messages) ?? []
-
-        return messages
-    }
-
-    selectChat = (chatId: number) => {
+    selectChat: TSelectChatHandler = (chatId: TChatId) => {
         return () => {
-            const messages = this.fetchMessages(chatId)
+            const messages:TMessage[] = fetchMessages(chatId)
 
             this.setState({
                 messages,
@@ -45,7 +46,7 @@ class Messenger extends PureComponent {
 
     componentDidMount() {
         this.setState({
-            chats: this.fetchChats()
+            chats: fetchChats()
         })
     }
 
@@ -62,5 +63,3 @@ class Messenger extends PureComponent {
         )    
     }
 }
-
-export default Messenger
