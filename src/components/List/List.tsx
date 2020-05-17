@@ -1,20 +1,36 @@
 import React from 'react'
 
-import {TSelectChatHandler} from '../Messenger/types'
 import {ChatEntity} from '../ChatEntity'
-
 import './List.css'
 
-interface Props {
+interface ListProps {
     chats: TChat[]
-    current: TChatId | null
-    handleClick: TSelectChatHandler
+    
+    //Ключ выбранного чата
+    selected: TUUID | undefined
+
+    //Обработчик нажатия на плашку чата
+    handleChatSelect: (chatId: TUUID) => () => void
 }
 
-export const List: React.FC<Props> = ({chats, current, handleClick}) => (
-    <ul className="list">
-        {chats.map((chat: TChat) => (
-            <ChatEntity key={chat.chatId} {...chat} isCurrent={chat.chatId === current } handleClick={handleClick} />
-        ))}
-    </ul>
-)
+export const List: React.FC<ListProps> = (props) => {
+    const {
+        chats,
+        selected,
+        handleChatSelect,
+    } = props
+
+    return (
+        <ul className="list">
+            {chats.map(({chatId, ...other}) => (
+                <ChatEntity
+                    key={chatId}
+                    chatId={chatId}
+                    isSelected={chatId === selected}
+                    handleChatSelect={handleChatSelect}
+                    {...other}
+                />
+            ))}
+        </ul>
+    )
+}

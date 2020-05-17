@@ -1,63 +1,84 @@
 import React, {PureComponent} from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import { v1 as uuidv1 } from 'uuid'
+import moment from 'moment'
 
-import {TSelectChatHandler} from './types'
-import {List} from '../List/List'
-import {Chat} from '../Chat/Chat'
-import {chats, messages} from './fakeData'
-
+import {List} from '../List'
+import {Chat} from '../Chat'
 import './Messenger.css'
+import {fetchChats, fetchMesssages} from '../../services/api'
+import {Compose} from '../Compose'
 
-interface State {
+interface MessengerState {
     messages: TMessage[]
     chats: TChat[]
-    current: TChatId | null
+    selected: TUUID | undefined
 }
 
-const fetchChats = () => {
-    const compareDate = (a: TChat, b: TChat): number => {
-        if (a.date < b.date) return 1
-        if (a.date > b.date) return -1
-        return 0
-    }
-
-    return chats.sort(compareDate)
+interface MessengerProps {
+    userId?: TUUID
 }
 
-const fetchMessages = (chatId: TChatId) => messages.filter(message => message.chatId === chatId)
+interface QueryParams {
+    chatId?: string | undefined
+}
 
-
-export class Messenger extends PureComponent<{}, State> {    
-    state: State = {
+export class Messenger extends PureComponent<MessengerProps & RouteComponentProps<QueryParams>, MessengerState> {
+    state = {
         messages: [],
         chats: [],
-        current: null
+        selected: this.props.match.params.chatId,
     }
 
-    selectChat: TSelectChatHandler = (chatId: TChatId) => {
-        return () => {
-            const messages:TMessage[] = fetchMessages(chatId)
+    handlePushMessage = (message: string) => {
+        this.setState(prevState => {
+            return {
+                messages: [
+                    ...prevState.messages,
+                    {
+                        messageId: uuidv1(),
+                        text: message,
+                        timestamp: moment().format(),
+                        author: "a2d451ac-1c55-49ee-95e4-a1eca43520c7"
+                    }
+                ]
+            }
+        })
+    }
 
+    handleChatSelect = (chatId: TUUID) => {
+        return () => {
             this.setState({
-                messages,
-                current: chatId
+                messages: fetchMesssages(chatId),
+                selected: chatId
             })    
+
+            this.props.history.push(`/chat/${chatId}`)
         }
     }
 
     componentDidMount() {
         this.setState({
-            chats: fetchChats()
+            chats: fetchChats(),
+
+            //В браузере эту часть сложно увидеть, потому что приложение пока не хранит данные об авторизации
+            messages: this.state.selected ? fetchMesssages(this.state.selected) : []
         })
     }
 
     render() {
         return (
-            <div className="messenger">
-                <div className="messenger__sidebar">
-                    <List chats={this.state.chats} current={this.state.current} handleClick={this.selectChat} />
+            <div className="layout">
+                <div className="sidebar">
+                    <List chats={this.state.chats} selected={this.state.selected} handleChatSelect={this.handleChatSelect}  />
                 </div>
-                <div className="messenger__main">
-                    <Chat messages={this.state.messages} />
+                <div className="main">
+                    {this.state.selected &&
+                        <>
+                        <Chat messages={this.state.messages} />
+                        <Compose handlePushMessage={this.handlePushMessage} />    
+                        </>
+                    }
                 </div>
             </div>
         )    

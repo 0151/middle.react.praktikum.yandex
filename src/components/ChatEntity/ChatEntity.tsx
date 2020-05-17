@@ -1,29 +1,55 @@
 import React from 'react'
-
-import {TSelectChatHandler} from '../Messenger/types'
-import cn from 'classnames';
+import {cn as createCn} from '@bem-react/classname'
 import moment from 'moment'
-import {Avatar} from '../Avatar'
 
 import './ChatEntity.css'
+import {Avatar} from '../Avatar'
 
-interface Props extends TChat {
-    isCurrent: boolean
-    handleClick: TSelectChatHandler
+interface ChatEntityProps {
+    chatId: TUUID
+
+    // Дата последнего сообщения
+    timestamp: string
+    
+    //Заголовок чата
+    name: string
+
+    //Последнее сообщение или описание
+    text?: string
+
+    isSelected: boolean
+
+    //Обработчик нажатия на плашку чата
+    handleChatSelect: (chatId: TUUID) => () => void
 }
 
-export const ChatEntity: React.FC<Props> = ({chatId, name, text, date, isCurrent, handleClick}) => {    
-    const chatEntityClass = cn('chat-entity', { 'chat-entity_current': isCurrent })
+export const ChatEntity: React.FC<ChatEntityProps> = (props) => {
+    const cn = createCn('chat-entity')
+
+    const {
+        chatId,
+        timestamp,
+        name,
+        text,
+        isSelected,
+        handleChatSelect
+    } = props
+
+    const dateFormatted = moment(timestamp).format('DD.MM.YYYY')
+
+    const resultclassName = cn({
+        'selected': isSelected
+    })
 
     return (
-        <li className={chatEntityClass} onClick={handleClick(chatId)}>
+        <li className={resultclassName} onClick={handleChatSelect(chatId)}>
             <div className="chat-entity__prepend">
                 <Avatar />
             </div>
             <div className="chat-entity__body">
                 <div className="chat-entity__horizontal-layout">
                     <div className="chat-entity__header">{name}</div>
-                    <div className="chat-entity__date">{moment(date).format('DD.MM.YYYY')}</div>
+                    <div className="chat-entity__date">{dateFormatted}</div>
                 </div>
                 { text && <div className="chat-entity__text">{text}</div> }
             </div>

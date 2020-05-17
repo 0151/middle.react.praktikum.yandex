@@ -4,5 +4,18 @@
     padding: 12px 0;
     flex-grow: 1;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-end;
+}
+
+.timestamp {
+    align-self: stretch;
+    padding: 6px 12px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.timestamp::first-letter {
+    text-transform: uppercase;
 }

@@ -1,18 +1,33 @@
-type TChatId = number
+type TUUID = string
 
 type TChat = {
-    chatId: TChatId
+    chatId: TUUID
     name: string
     text?: string
-    date: Date
+    timestamp: string
 }
 
-type TMessageId = number
-
 type TMessage = {
-    messageId: TMessageId
-    chatId: TChatId
-    date: Date
+    messageId: TUUID
+    author: string
+    timestamp: string
     text: string
 }
 
+interface TMessagesMap {
+    [chatId: string]: TMessage[]
+}
+
+type TContactsMap = {
+    [userId: string]: string
+}
+
+interface FormState {
+    fields: {
+        [name: string]: string
+    }
+    errors: {
+        //TODO: Хранить несколько ошибок, использовать массив
+        [name: string]: string
+    }
+}

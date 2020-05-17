@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import './Avatar.css'
 
-interface Props {
+interface AvatarProps {
     src?: string
     alt?: string
 }
 
-export const Avatar: React.FC<Props> = ({src, alt}) => (
+export const Avatar: FC<AvatarProps> = ({src, alt}) => (
     <div className="avatar">
-        {src && //Так и было задумано) Если в пропс не придет src, div.avatar останется в DOM в качестве плейсхолдера
+        {src &&
             <img className="avatar__image" src={src} alt={alt} />
         }
     </div>

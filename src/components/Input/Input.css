@@ -1,0 +1,32 @@
+.input__control {
+    width: 100%;
+    border: 0;
+    border-width: 0 0 1px;
+    padding-bottom: 1px;
+    border-color: #ebebeb;
+    border-style: solid;
+    font-size: 16px;
+    font-family: inherit;
+    height: 32px;
+    outline: none;
+    margin-bottom: 5px;
+    box-sizing: content-box;
+}
+
+.input__control:focus {
+    border-color: #ffdb4d;
+    border-width: 0 0 2px;
+    padding-bottom: 0;
+}
+
+.input_invalid .input__control {
+    border-color: #df4b41;
+    border-width: 0 0 2px;
+    padding-bottom: 0;
+}
+
+.input__error {
+    margin-bottom: 5px;
+    color: #df4b41;
+    font-size: 14px;
+}
