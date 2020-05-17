@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/middle.react.praktikum.yandex/static/css/main.7a5efba0.chunk.css",
-    "main.js": "/middle.react.praktikum.yandex/static/js/main.f8e4e611.chunk.js",
-    "main.js.map": "/middle.react.praktikum.yandex/static/js/main.f8e4e611.chunk.js.map",
-    "runtime-main.js": "/middle.react.praktikum.yandex/static/js/runtime-main.5876ed40.js",
-    "runtime-main.js.map": "/middle.react.praktikum.yandex/static/js/runtime-main.5876ed40.js.map",
-    "static/js/2.b7018d54.chunk.js": "/middle.react.praktikum.yandex/static/js/2.b7018d54.chunk.js",
-    "static/js/2.b7018d54.chunk.js.map": "/middle.react.praktikum.yandex/static/js/2.b7018d54.chunk.js.map",
+    "main.css": "/middle.react.praktikum.yandex/static/css/main.0289d38a.chunk.css",
+    "main.js": "/middle.react.praktikum.yandex/static/js/main.c290a4d5.chunk.js",
+    "main.js.map": "/middle.react.praktikum.yandex/static/js/main.c290a4d5.chunk.js.map",
+    "runtime-main.js": "/middle.react.praktikum.yandex/static/js/runtime-main.87182ac1.js",
+    "runtime-main.js.map": "/middle.react.praktikum.yandex/static/js/runtime-main.87182ac1.js.map",
+    "static/js/2.8b476e8d.chunk.js": "/middle.react.praktikum.yandex/static/js/2.8b476e8d.chunk.js",
+    "static/js/2.8b476e8d.chunk.js.map": "/middle.react.praktikum.yandex/static/js/2.8b476e8d.chunk.js.map",
     "index.html": "/middle.react.praktikum.yandex/index.html",
-    "precache-manifest.ebf143da895f7a1209fcba9d14b860af.js": "/middle.react.praktikum.yandex/precache-manifest.ebf143da895f7a1209fcba9d14b860af.js",
+    "precache-manifest.f6523c2c4952c786276a71e1bca30417.js": "/middle.react.praktikum.yandex/precache-manifest.f6523c2c4952c786276a71e1bca30417.js",
     "service-worker.js": "/middle.react.praktikum.yandex/service-worker.js",
-    "static/css/main.7a5efba0.chunk.css.map": "/middle.react.praktikum.yandex/static/css/main.7a5efba0.chunk.css.map",
-    "static/js/2.b7018d54.chunk.js.LICENSE.txt": "/middle.react.praktikum.yandex/static/js/2.b7018d54.chunk.js.LICENSE.txt"
+    "static/css/main.0289d38a.chunk.css.map": "/middle.react.praktikum.yandex/static/css/main.0289d38a.chunk.css.map",
+    "static/js/2.8b476e8d.chunk.js.LICENSE.txt": "/middle.react.praktikum.yandex/static/js/2.8b476e8d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.5876ed40.js",
-    "static/js/2.b7018d54.chunk.js",
-    "static/css/main.7a5efba0.chunk.css",
-    "static/js/main.f8e4e611.chunk.js"
+    "static/js/runtime-main.87182ac1.js",
+    "static/js/2.8b476e8d.chunk.js",
+    "static/css/main.0289d38a.chunk.css",
+    "static/js/main.c290a4d5.chunk.js"
   ]
 }
